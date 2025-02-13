@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-import 'appbar.dart';
+import 'circle_background.dart';
 
-class BackStyle extends StatelessWidget {
-  const BackStyle({super.key});
+class BackGroundRectangle extends StatelessWidget {
+  const BackGroundRectangle({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class BackStyle extends StatelessWidget {
       CustomPaint(
         size: Size(MediaQuery.of(context).size.width,
             MediaQuery.of(context).size.height),
-        painter: BackgroundPainter(),
+        painter: BackgroundCircle(),
       ),
     ],) ;
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BackgroundPainter extends CustomPainter {
+class BackgroundCircle extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint circlePaint = Paint()

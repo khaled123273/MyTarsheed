@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:graduation/presentation/screens/verifying/verify_email.dart';
+import 'package:graduation/presentation/constants/icons_and_images.dart';
+import 'package:graduation/presentation/screens/verify_email.dart';
 
-import '../widgets/back_ground/class_of_background.dart';
-import '../widgets/buttons/class_of_laregbutton.dart';
-import '../widgets/buttons/class_of_socialicon.dart';
-import '../widgets/text/class_of_main_title.dart';
-import '../widgets/text/class_of_textfieldpassword.dart';
-import '../widgets/text/class_of_textformfield.dart';
-import '../widgets/text/class_of_undertext_maintitle.dart';
+import '../widgets/rectangle_background.dart';
+import '../widgets/large_button.dart';
+import '../widgets/social_icon.dart';
+import '../widgets/main_title.dart';
+import '../widgets/sup_title.dart';
+import '../widgets/text_field.dart';
 
-class AccountPage extends StatelessWidget {
-  AccountPage({super.key});
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({super.key});
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
@@ -24,7 +24,7 @@ class AccountPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          Positioned.fill(child: BackStyle()),
+          Positioned.fill(child: BackGroundRectangle()),
           SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 97),
@@ -36,16 +36,25 @@ class AccountPage extends StatelessWidget {
                   children: [
                     MainTitle(maintext: "Create Account"),
                     SizedBox(height: 10),
-                    UnderMainTtle(text2: "Create an account so you can easily control your home"),
+                    SupTitle(text2: "Create an account so you can easily control your home"),
                     SizedBox(height: 50),
-                    TField(textf: "Email", controller: emailController),
+                    CustomTextField(
+                      fieldType: FieldType.email,
+                      controller: emailController,
+                      hintText: "Email",
+                    ),
                     SizedBox(height: 20),
-                    Password(controller: passwordController), // ✅ الباسورد الأساسي
+                    CustomTextField(
+                      fieldType: FieldType.password,
+                      controller: passwordController,
+                      hintText: "Password",
+                    ),
                     SizedBox(height: 20),
-                    Password(
+                    CustomTextField(
+                      fieldType: FieldType.confirmPassword,
                       controller: confirmPasswordController,
-                      textp: "Confirm Password",
-                      confirmPasswordController: passwordController, // ✅ التحقق من الباسورد الأساسي
+                      originalPasswordController: passwordController,
+                      hintText: "Confirm Password",
                     ),
                     SizedBox(height: 35),
                     LargeButton(
@@ -65,7 +74,7 @@ class AccountPage extends StatelessWidget {
                           } else {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => VerifyEmail()),
+                              MaterialPageRoute(builder: (context) => EmailVerificationScreen()),
                             );
                           }
                         }
@@ -79,13 +88,32 @@ class AccountPage extends StatelessWidget {
                           textStyle: TextStyle(fontWeight: FontWeight.w800),
                         ),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => AccountPage()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => EmailVerificationScreen()));
                         },
                         child: Text("Already have an account"),
                       ),
                     ),
                     SizedBox(height: 30),
-                    SocialIcons(texts: "Or continue with"),
+                    Center(
+                      child: Text("Or continue with",
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFF2666DE),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SocialIcon(image: AssetsManager.google,scale: 1.3,),
+                        SizedBox(width: 8,),
+                        SocialIcon(image: AssetsManager.facebook,scale: 2,),
+                        SizedBox(width: 8,),
+                        SocialIcon(image: AssetsManager.apple)
+                      ],
+                    )
                   ],
                 ),
               ),

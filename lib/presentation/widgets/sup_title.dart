@@ -1,26 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class UnderMainTtle extends StatelessWidget {
-  const UnderMainTtle({required this.text2,this.wi,this.fw,this.si});
+class SupTitle extends StatelessWidget {
+  const SupTitle({required this.text2,this.width,this.fontweight,this.size});
 final String text2;
-final double ?wi;
-final FontWeight ?fw;
-final double ?si;
+final double ?width;
+final FontWeight ?fontweight;
+final double ?size;
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
         alignment: Alignment.center,
         height: 60,
-        width: wi ?? 300,
+        width: width ?? 300,
         child: Text(
           text2,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: si??14,
+            fontSize: size??14,
             color: Colors.black,
-            fontWeight: fw??FontWeight.w500,
+            fontWeight: fontweight??FontWeight.w500,
           ),
         ),
       ),

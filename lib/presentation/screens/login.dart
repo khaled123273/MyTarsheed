@@ -1,15 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation/presentation/screens/creat_account.dart';
-import 'package:graduation/presentation/widgets/back_ground/class_of_background.dart';
-import 'package:graduation/presentation/widgets/buttons/class_of_laregbutton.dart';
-import 'package:graduation/presentation/widgets/text/class_of_main_title.dart';
-import 'package:graduation/presentation/widgets/buttons/class_of_socialicon.dart';
-import 'package:graduation/presentation/widgets/text/class_of_textfieldpassword.dart';
-import 'package:graduation/presentation/widgets/text/class_of_textformfield.dart';
-import 'package:graduation/presentation/widgets/text/class_of_undertext_maintitle.dart';
-
-import '../widgets/back_ground/appbar.dart';
+import 'package:graduation/presentation/constants/icons_and_images.dart';
+import 'package:graduation/presentation/screens/sign_up_create_account.dart';
+import 'package:graduation/presentation/widgets/rectangle_background.dart';
+import 'package:graduation/presentation/widgets/large_button.dart';
+import 'package:graduation/presentation/widgets/main_title.dart';
+import 'package:graduation/presentation/widgets/social_icon.dart';
+import 'package:graduation/presentation/widgets/sup_title.dart';
+import '../widgets/text_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -31,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         children: [
          Positioned.fill(
-           child: BackStyle(),),
+           child: BackGroundRectangle(),),
           SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 97),
@@ -43,12 +41,19 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                    MainTitle(maintext: "Login Here"),
                     SizedBox(height: 30),
-                    UnderMainTtle(text2:"Welcome back you’ve been missed!",fw: FontWeight.w600,si: 20,wi: 228, ),
+                    SupTitle(text2:"Welcome back you’ve been missed!",fontweight: FontWeight.w600,size: 20,width: 228, ),
                     SizedBox(height: 64),
-                     TField(textf: "Email",controller: emailController),
+                    CustomTextField(
+                      fieldType: FieldType.email,
+                      controller: emailController,
+                      hintText: "Email",
+                    ),
                     SizedBox(height: 20),
-                    Password(controller: passwordController,),
-                    SizedBox(height: 21),
+                    CustomTextField(
+                      fieldType: FieldType.password,
+                      controller: passwordController,
+                      hintText: "Password",
+                    ),                    SizedBox(height: 21),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: TextButton(
@@ -74,13 +79,32 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>AccountPage()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpScreen()));
                         },
                         child: Text("Create new account"),
                       ),
                     ),
                     SizedBox(height: 30),
-                    SocialIcons(texts: "Or continue with"),
+                    Center(
+                      child: Text("Or continue with",
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFF2666DE),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                      SocialIcon(image: AssetsManager.google,scale: 1.3,),
+                        SizedBox(width: 8,),
+                        SocialIcon(image: AssetsManager.facebook,scale: 2,),
+                        SizedBox(width: 8,),
+                        SocialIcon(image: AssetsManager.apple)
+                    ],
+                    )
                   ],
                 ),
               ),

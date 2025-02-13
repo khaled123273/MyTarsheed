@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation/presentation/screens/verifying/verify_finish.dart';
+import 'package:graduation/presentation/screens/verify_finish.dart';
+import 'package:graduation/presentation/widgets/text_field.dart';
 
-import '../../widgets/back_ground/class_of_background.dart';
-import '../../widgets/text/class_of_main_title.dart';
-import '../../widgets/text/class_of_undertext_maintitle.dart';
+import '../widgets/rectangle_background.dart';
+import '../widgets/main_title.dart';
+import '../widgets/sup_title.dart';
 
-class VerifyCode extends StatelessWidget {
-  const VerifyCode({super.key});
-
+class CodeVerificationScreen extends StatelessWidget {
+   CodeVerificationScreen({super.key});
+final TextEditingController codeController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +17,7 @@ class VerifyCode extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: Stack(children: [
           Positioned.fill(
-            child: BackStyle(),
+            child: BackGroundRectangle(),
           ),
           SingleChildScrollView(
               child: Padding(
@@ -29,27 +30,14 @@ class VerifyCode extends StatelessWidget {
                           children: [
                         MainTitle(maintext: "Verify Your Identity "),
                         SizedBox(height: 1),
-                        UnderMainTtle(
+                            SupTitle(
                             text2: "We have sent an email to mo****@gmail."),
                         SizedBox(height: 50),
-                        TextFormField(
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xf1f4ff)),
+                            CustomTextField(
+                              fieldType: FieldType.code,
+                              controller: codeController,
+                              hintText: "Enter Code",
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF2666DE)),
-                            ),
-                            filled: true,
-                            fillColor: Colors.grey[200],
-                            hintText: "Enter Code",
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                            ),
-                          ),
-                        ),
                         SizedBox(height: 15),
                         SizedBox(
                             width: 357,
@@ -65,7 +53,7 @@ class VerifyCode extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => VerifyFinish()));
+                                        builder: (context) => ResetPasswordScreen()));
                               },
                               child: Text("Continue",
                                   style: TextStyle(

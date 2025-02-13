@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graduation/presentation/screens/login.dart';
-import 'package:graduation/presentation/widgets/back_ground/class_of_background.dart';
+import 'package:graduation/presentation/widgets/rectangle_background.dart';
+import 'package:graduation/presentation/screens/account_screan.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -12,9 +14,9 @@ class HomePage extends StatelessWidget {
       body: Stack(
           children: [
           Positioned.fill(
-          child: BackStyle(),),
+          child: BackGroundRectangle(),),
             Padding(
-            padding: const EdgeInsets.only(top:10),
+            padding: const EdgeInsets.only(top:0.5),
           child: Center(
           child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -62,6 +64,7 @@ class HomePage extends StatelessWidget {
             // 🔹 زر التسجيل (Register)
             GestureDetector(
               onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> AccountPage()));
                 // ضع هنا الـ Navigator للـ Register
               },
               child: Container(

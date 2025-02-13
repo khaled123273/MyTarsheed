@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation/presentation/widgets/buttons/class_of_laregbutton.dart';
+import 'package:graduation/presentation/widgets/large_button.dart';
 
-import '../../widgets/back_ground/class_of_background.dart';
-import '../../widgets/text/class_of_main_title.dart';
-import '../../widgets/text/class_of_textfieldpassword.dart';
-import '../../widgets/text/class_of_undertext_maintitle.dart';
+import '../widgets/rectangle_background.dart';
+import '../widgets/main_title.dart';
+import '../widgets/sup_title.dart';
+import '../widgets/text_field.dart';
 
-class VerifyFinish extends StatelessWidget {
-   VerifyFinish({super.key});
+class ResetPasswordScreen extends StatelessWidget {
+  ResetPasswordScreen({super.key});
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController passwordController = TextEditingController();
    final TextEditingController confirmPasswordController = TextEditingController();
@@ -20,7 +20,7 @@ class VerifyFinish extends StatelessWidget {
         body: Stack(
             children: [
               Positioned.fill(
-                child: BackStyle(),
+                child: BackGroundRectangle(),
               ),SingleChildScrollView(
                   child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 97),
@@ -32,16 +32,22 @@ class VerifyFinish extends StatelessWidget {
                               children: [
                                 MainTitle(maintext: "Verify Your Identity "),
                                 SizedBox(height: 1),
-                                UnderMainTtle(text2:"Enter Your New Password" ),
+                                SupTitle(text2:"Enter Your New Password" ),
                                 SizedBox(height: 50),
                                 SizedBox(height: 15),
-                                Password(controller: passwordController,textp: "New Password",),
+                                CustomTextField(
+                                  fieldType: FieldType.password,
+                                  controller: passwordController,
+                                  hintText: "New Password",
+                                ),
                                 SizedBox(height: 20),
-                                Password(
+                                CustomTextField(
+                                  fieldType: FieldType.confirmPassword,
                                   controller: confirmPasswordController,
-                                  textp: "Confirm Password",
-                                  confirmPasswordController: passwordController, // ✅ التحقق من الباسورد الأساسي
-                                ),                                SizedBox(height: 15,),
+                                  originalPasswordController: passwordController,
+                                  hintText: "Confirm New Password",
+                                ),
+                                SizedBox(height: 15,),
                                 LargeButton(textB: "finish", formKey: formKey, passwordController: passwordController,
                                   onpressed: () {
                                  if (formKey.currentState!.validate()) {
